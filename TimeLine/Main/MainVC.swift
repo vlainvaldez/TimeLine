@@ -10,6 +10,15 @@ import UIKit
 
 public final class MainVC: UIViewController {
     
+    // MARK: - Initializer
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - LifeCycle Methods
     public override func loadView() {
         super.loadView()

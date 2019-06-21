@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		81C0963F22BC7CA900B82BD9 /* TimeLineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C0963E22BC7CA900B82BD9 /* TimeLineTests.swift */; };
 		81C0964A22BC7CA900B82BD9 /* TimeLineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C0964922BC7CA900B82BD9 /* TimeLineUITests.swift */; };
 		81C0965B22BC849A00B82BD9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C0965A22BC849A00B82BD9 /* MainView.swift */; };
+		81C0966022BC977600B82BD9 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C0965F22BC977600B82BD9 /* UIViewExtensions.swift */; };
 		855E925820B40F73643A07C3 /* Pods_TimeLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B24C78E9BDA0BF934DDF8DF /* Pods_TimeLine.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		81C0964922BC7CA900B82BD9 /* TimeLineUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUITests.swift; sourceTree = "<group>"; };
 		81C0964B22BC7CA900B82BD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81C0965A22BC849A00B82BD9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		81C0965F22BC977600B82BD9 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		85A420A4FCCEB723E72DA3F3 /* Pods_TimeLineUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeLineUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9084608320B092147067FE48 /* Pods-TimeLineTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeLineTests.release.xcconfig"; path = "Target Support Files/Pods-TimeLineTests/Pods-TimeLineTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3EB896005C401A5AE616395 /* Pods-TimeLineTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeLineTests.debug.xcconfig"; path = "Target Support Files/Pods-TimeLineTests/Pods-TimeLineTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -99,7 +101,6 @@
 				3FEFB77EDEB9AA1B06B4C872 /* Pods-TimeLineUITests.debug.xcconfig */,
 				F172BE9CED9E37FEACF9D17A /* Pods-TimeLineUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -129,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				81C0965922BC7CE400B82BD9 /* Supporting Files */,
+				81C0965D22BC974100B82BD9 /* Utilities */,
 				81C0965822BC7CE000B82BD9 /* App */,
 				81C0965722BC7CDC00B82BD9 /* Main */,
 				81C0963522BC7CA900B82BD9 /* Info.plist */,
@@ -157,6 +159,7 @@
 		81C0965722BC7CDC00B82BD9 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				81C0965C22BC95CC00B82BD9 /* TimeLine */,
 				81C0962B22BC7CA600B82BD9 /* MainVC.swift */,
 				81C0965A22BC849A00B82BD9 /* MainView.swift */,
 			);
@@ -178,6 +181,29 @@
 				81C0963022BC7CA900B82BD9 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81C0965C22BC95CC00B82BD9 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		81C0965D22BC974100B82BD9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				81C0965E22BC975E00B82BD9 /* Extensions */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		81C0965E22BC975E00B82BD9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				81C0965F22BC977600B82BD9 /* UIViewExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C76AD2432D18271DABF8806A /* Frameworks */ = {
@@ -412,6 +438,7 @@
 			files = (
 				81C0962C22BC7CA600B82BD9 /* MainVC.swift in Sources */,
 				81C0965B22BC849A00B82BD9 /* MainView.swift in Sources */,
+				81C0966022BC977600B82BD9 /* UIViewExtensions.swift in Sources */,
 				81C0962A22BC7CA600B82BD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
