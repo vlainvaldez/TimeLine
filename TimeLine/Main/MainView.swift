@@ -11,100 +11,128 @@ import SnapKit
 
 public class MainView: UIView {
     
-    public let topBarView: UIView = {
-        let view: UIView = UIView()
-        view.backgroundColor = UIColor.blue
-        return view
-    }()
-    
-    public let ringView: UIView = {
-        let view: UIView = UIView()
-        view.backgroundColor = UIColor.blue
-        return view
-    }()
-    
-    public let hollowView: UIView = {
-        let view: UIView = UIView()
+    public let timeLineView: AJTimeLine = {
+        let view: AJTimeLine = AJTimeLine(
+            topBarHeight: 25.0,
+            ringSize: 20.0,
+            bottomBarHeight: 10.0
+        )
         view.backgroundColor = UIColor.white
         return view
     }()
     
-    public let bottomBarView: UIView = {
-        let view: UIView = UIView()
-        view.backgroundColor = UIColor.blue
-        return view
-    }()
-    
-    public let timeLineView: UIView = {
-        let view: UIView = UIView()
+    public let timeLineView1: AJTimeLine = {
+        let view: AJTimeLine = AJTimeLine(
+            topBarHeight: 25.0,
+            ringSize: 20.0,
+            bottomBarHeight: 10.0
+        )
         view.backgroundColor = UIColor.white
         return view
     }()
     
+    public let timeLineView2: AJTimeLine = {
+        let view: AJTimeLine = AJTimeLine(
+            topBarHeight: 25.0,
+            ringSize: 20.0,
+            bottomBarHeight: 10.0
+        )
+        view.backgroundColor = UIColor.white
+        return view
+    }()
+    
+    public let timelineStackView: UIStackView = {
+        let view: UIStackView = UIStackView()
+        view.axis  = NSLayoutConstraint.Axis.vertical
+        view.alignment = UIStackView.Alignment.center
+        view.spacing = 0.0
+        return view
+    }()
+    
+    private var timelineStackViewHeight: CGFloat = 0.0
+    private var timelineStackViewConstraintHeight: Constraint!
     // MARK: - Initializer
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
         
         self.subviews(forAutoLayout: [
-            self.timeLineView
+            self.timelineStackView
         ])
         
-        self.timeLineView.subviews(forAutoLayout: [
-            self.topBarView, self.ringView,
-            self.bottomBarView
-        ])
-        
-        self.timeLineView.snp.remakeConstraints { [unowned self] (make: ConstraintMaker) -> Void in
+        self.timelineStackView.snp.remakeConstraints { [unowned self] (make: ConstraintMaker) -> Void in
             make.top.equalTo(self.safeAreaLayoutGuide).offset(50.0)
-            make.height.equalTo(300.0)
-            make.leading.equalToSuperview().offset(50.0)
-            make.trailing.equalToSuperview().inset(50.0)
+            self.timelineStackViewConstraintHeight =  make.height.equalTo(200.0).constraint
+            make.leading.equalToSuperview().offset(20.0)
+            make.trailing.equalToSuperview().inset(20.0)
         }
         
-        self.topBarView.snp.remakeConstraints { [unowned self] (make: ConstraintMaker) -> Void in
-            make.height.equalTo(25.0)
-            make.width.equalTo(5.0)
-            make.bottom.equalTo(self.ringView.snp.top).offset(10.0)
-            make.centerX.equalTo(self.ringView)
+        for _ in 1...8 {
+            
+            let leftLabel: UILabel = {
+                let view: UILabel = UILabel()
+                view.text = "left label Sample"
+                view.font = UIFont.systemFont(
+                    ofSize: 14.0,
+                    weight: UIFont.Weight.semibold
+                )
+                view.adjustsFontSizeToFitWidth = true
+                return view
+            }()
+            
+            let timeLineView: AJTimeLine = {
+                let view: AJTimeLine = AJTimeLine(
+                    topBarHeight: 25.0,
+                    ringSize: 20.0,
+                    bottomBarHeight: 10.0
+                )
+                view.backgroundColor = UIColor.white
+                return view
+            }()
+            
+            let rightLabel: UILabel = {
+                let view: UILabel = UILabel()
+                view.text = "right label Sample"
+                view.font = UIFont.systemFont(
+                    ofSize: 14.0,
+                    weight: UIFont.Weight.semibold
+                )
+                view.adjustsFontSizeToFitWidth = true
+                return view
+            }()
+            
+            let timelineMomentsStackView: UIStackView = {
+                let view: UIStackView = UIStackView()
+                view.axis  = NSLayoutConstraint.Axis.horizontal
+                view.alignment = UIStackView.Alignment.center
+                view.spacing = 0.0
+                view.distribution = UIStackView.Distribution.fillEqually
+                return view
+            }()
+            
+            timelineMomentsStackView.addArrangedSubview(leftLabel)
+            timelineMomentsStackView.addArrangedSubview(timeLineView)
+            timelineMomentsStackView.addArrangedSubview(rightLabel)
+            
+            self.timelineStackView.addArrangedSubview(timelineMomentsStackView)
+            
+            self.timelineStackViewHeight += 40
+            
         }
         
-        self.ringView.snp.remakeConstraints { (make: ConstraintMaker) -> Void in
-            make.height.equalTo(20.0)
-            make.width.equalTo(20.0)
-            make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview()
-        }
-        
-        self.ringView.subview(forAutoLayout: self.hollowView)
-        
-        self.hollowView.snp.remakeConstraints { (make: ConstraintMaker) -> Void in
-            make.height.equalTo(16.0)
-            make.width.equalTo(16.0)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
-        
-        self.bottomBarView.snp.remakeConstraints { [unowned self] (make: ConstraintMaker) -> Void in
-            make.height.equalTo(10.0)
-            make.width.equalTo(5.0)
-            make.top.equalTo(self.ringView.snp.bottom).inset(2.0)
-            make.centerX.equalTo(self.ringView)
-        }
+        self.timelineStackView.distribution = UIStackView.Distribution.fillEqually
     }
     
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     public override func layoutSubviews() {
         super.layoutSubviews()
-        print(self.ringView.frame)
-        self.hollowView.layoutIfNeeded()
-        self.ringView.layoutIfNeeded()
-        self.ringView.setRadius()
-        self.hollowView.setRadius()
+        
+        print("FRAME \(self.timelineStackView.frame.height)")
+        
+        self.timelineStackViewConstraintHeight.update(offset: self.timelineStackViewHeight)
     }
     
 }
